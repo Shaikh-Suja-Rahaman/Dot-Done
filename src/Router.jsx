@@ -7,8 +7,8 @@ import PrivateRoute from './components/PrivateRoute';
 import Landing from './components/Landing';
 
 export const router = createBrowserRouter([
-    {path: "/", element: <Landing/>},
+    // {path: "/", element: <Landing/>},
+    {path: "/", element: <Signin/>},
     {path: "/signup", element: <Signup/>},
-    {path: "/signin", element: <Signin/>},
     {path: "/dashboard", element: <PrivateRoute><Dashboard/></PrivateRoute> },
 ]);

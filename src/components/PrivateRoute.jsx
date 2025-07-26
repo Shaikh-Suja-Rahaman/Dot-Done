@@ -12,7 +12,7 @@ function PrivateRoute({children}) {
 
   return (
     <>
-        {session ? <>{children}</> : <Navigate to='/signin'/>}
+        {session ? <>{children}</> : <Navigate to='/'/>}
     </>
   )
 }

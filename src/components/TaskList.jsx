@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTodo } from "../context/TodoContext";
+import { FaGripVertical, FaCheck, FaTrash } from 'react-icons/fa';
 
 export default function TaskList() {
   const { selectedGroup, tasks, addTask, toggleTask, deleteTask } = useTodo();
@@ -22,44 +23,41 @@ export default function TaskList() {
   };
 
   return (
-    <div className="bg-zinc-900 text-zinc-100 rounded-xl shadow-lg p-8 max-w-lg mx-auto mt-8 flex flex-col min-h-[400px]">
-      <header className="mb-6 text-center">
-        <h2 className="text-2xl font-bold text-green-400">{selectedGroup.name} Tasks</h2>
+    <div className="flex flex-col items-center w-full">
+      <header className="mb-8 mt-4 text-center">
+        <h2 className="text-3xl font-bold tracking-widest text-white mb-2">{selectedGroup.name.toUpperCase()} <span className="text-green-400">TASKS</span></h2>
+        <div className="w-48 h-1 bg-green-400 mx-auto rounded-full mb-2" />
       </header>
-      <form onSubmit={handleAddTask} className="flex gap-2 mb-6">
+      <form onSubmit={handleAddTask} className="flex w-full max-w-2xl mb-8 gap-4">
         <input
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
-          placeholder="New task"
-          className="flex-1 px-4 py-2 rounded-lg bg-zinc-800 text-zinc-100 border border-zinc-700 focus:outline-none focus:border-green-400 transition"
+          placeholder="ADD YOUR TASK"
+          className="flex-1 px-6 py-3 rounded-full bg-zinc-700 text-zinc-200 border-none focus:outline-none focus:ring-2 focus:ring-green-400 text-lg tracking-wide shadow"
         />
-        <button className="px-4 py-2 bg-green-500 hover:bg-green-400 text-white font-semibold rounded-lg transition">
-          Add
-        </button>
+        <button className="px-8 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded-full shadow transition text-lg">ADD</button>
       </form>
-      <ul className="flex-1 space-y-3">
+      <ul className="w-full max-w-2xl flex flex-col gap-5">
         {tasks.map((task) => (
           <li
             key={task.id}
-            className={`flex items-center bg-zinc-800 rounded-lg px-4 py-3 border border-zinc-700 shadow-sm transition ${task.completed ? 'opacity-60' : ''}`}
+            className={`flex items-center rounded-full px-6 py-4 shadow-md transition bg-zinc-700 ${task.completed ? 'opacity-60' : ''}`}
           >
-            <label className="flex items-center flex-1 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTask(task.id, !task.completed)}
-                className="accent-green-400 w-5 h-5 mr-3"
-              />
-              <span className={`text-base font-medium ${task.completed ? 'line-through text-zinc-400' : ''}`}>
-                {task.title}
-              </span>
-            </label>
+            <FaGripVertical className="mr-4 text-zinc-400" />
+            <span className={`flex-1 text-lg font-mono tracking-wide ${task.completed ? 'line-through text-zinc-400' : 'text-white'}`}>{task.title}</span>
+            <button
+              onClick={() => toggleTask(task.id, !task.completed)}
+              className={`ml-4 w-9 h-9 flex items-center justify-center rounded-full ${task.completed ? 'bg-green-500' : 'bg-zinc-800 border border-zinc-600'} hover:bg-green-400 transition`}
+              aria-label="Complete task"
+            >
+              <FaCheck className={`text-xl ${task.completed ? 'text-white' : 'text-green-400'}`} />
+            </button>
             <button
               onClick={() => deleteTask(task.id)}
-              className="ml-4 text-red-400 hover:text-red-600 text-xl font-bold transition"
+              className="ml-3 w-9 h-9 flex items-center justify-center rounded-full bg-red-500 hover:bg-red-600 transition"
               aria-label="Delete task"
             >
-              ×
+              <FaTrash className="text-white text-xl cursor-pointer" />
             </button>
           </li>
         )).reverse()}

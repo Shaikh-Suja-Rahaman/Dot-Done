@@ -83,11 +83,20 @@ export function TodoProvider({ children }) {
     if (!error) setTasks((prev) => prev.filter((t) => t.id !== taskId));
   };
 
+  // Delete group
+  const deleteGroup = async (groupId) => {
+    const { error } = await supabase.from("groups").delete().eq("id", groupId);
+    if (!error) setGroups((prev) => prev.filter((g) => g.id !== groupId));
+    // Optionally, clear selectedGroup if it was deleted
+    if (selectedGroup && selectedGroup.id === groupId) setSelectedGroup(null);
+  };
+
   return (
     <TodoContext.Provider
       value={{
         groups,
         addGroup,
+        deleteGroup, // <-- add this
         selectedGroup,
         setSelectedGroup,
         tasks,
