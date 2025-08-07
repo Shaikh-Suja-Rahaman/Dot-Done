@@ -15,7 +15,7 @@ function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleSignOut = async (e) => {
-    e.preventDefault();  
+    e.preventDefault();
     try {
       await signOut();
       navigate('/');
@@ -44,7 +44,7 @@ function Dashboard() {
   }, [session]);
 
   return (
-    <div className="flex min-h-screen bg-[#303030] text-zinc-100">
+    <div className="flex h-screen bg-[#303030] text-zinc-100">
       {/* Sidebar toggle button */}
       <button
         className="absolute top-4 left-4 z-20 p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white md:hidden"

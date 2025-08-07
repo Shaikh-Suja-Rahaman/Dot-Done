@@ -145,4 +145,25 @@
   margin: 2rem auto;
   max-width: 400px;
   box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
-} 
+}
+
+/* CSS */
+.highlighted-text {
+  position: relative;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: white;
+  display: inline-block; /* Required for positioning */
+}
+
+.highlighted-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 4px; /* Adjust this to move the line higher/lower */
+  width: 100%;
+  height: 6px; /* Thickness of the highlight */
+  background-color: #83c17f;
+  z-index: -1; /* Send it behind the text */
+  border-radius: 2px;
+}

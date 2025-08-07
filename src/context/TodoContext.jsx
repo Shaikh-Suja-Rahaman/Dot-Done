@@ -91,6 +91,23 @@ export function TodoProvider({ children }) {
     if (selectedGroup && selectedGroup.id === groupId) setSelectedGroup(null);
   };
 
+  // Update group color
+  const updateGroupColor = async (groupId, color) => {
+    const { data, error } = await supabase
+      .from("groups")
+      .update({ color }) //shorthand for {color : color}
+      .eq("id", groupId)
+      .select();
+
+    if (!error && data) {
+      setGroups((prev) =>
+        prev.map((group) =>
+          group.id === groupId ? { ...group, color } : group
+        )
+      );
+    }
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -103,6 +120,7 @@ export function TodoProvider({ children }) {
         addTask,
         toggleTask,
         deleteTask,
+        updateGroupColor,
       }}
     >
       {children}
