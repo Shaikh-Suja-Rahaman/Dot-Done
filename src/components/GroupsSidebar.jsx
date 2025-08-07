@@ -21,6 +21,7 @@ export default function GroupsSidebar() {
   // Ref to the last group item
   const lastGroupRef = useRef(null);
   const prevGroupsLength = useRef(groups.length);
+  console.log(groups)
 
 
   const handleAddGroup = (e) => {

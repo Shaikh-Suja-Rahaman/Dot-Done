@@ -6,6 +6,7 @@ import Task from './Task';
 import GroupsSidebar from "./GroupsSidebar";
 import TaskList from "./TaskList";
 import { FaBars } from 'react-icons/fa';
+import { useTodo } from '../context/TodoContext';
 
 function Dashboard() {
   const {session, signOut} = UserAuth();
@@ -13,6 +14,7 @@ function Dashboard() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const {selectedGroup} = useTodo();
 
   const handleSignOut = async (e) => {
     e.preventDefault();
@@ -60,7 +62,9 @@ function Dashboard() {
       {/* Main content */}
       <main className="flex-1 flex flex-col md:ml-0 ml-0">
         <div className="flex justify-end p-4">
-          <button onClick={handleSignOut} className="bg-green-500 hover:bg-green-400 text-white font-semibold px-4 py-2 rounded-lg transition">Sign Out</button>
+          <button onClick={handleSignOut}
+          style={{ backgroundColor: selectedGroup?.color || '#6FB269' }}
+          className="bg-green-500 hover:bg-green-400 text-white font-semibold px-4 py-2 rounded-lg transition">Sign Out</button>
         </div>
         <TaskList />
       </main>

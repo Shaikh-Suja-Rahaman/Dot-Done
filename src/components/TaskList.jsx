@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTodo } from "../context/TodoContext";
 import { FaGripVertical, FaCheck, FaTrash } from 'react-icons/fa';
 import './TaskList.css'; // Assuming you have a CSS file for styles
@@ -6,6 +6,11 @@ import './TaskList.css'; // Assuming you have a CSS file for styles
 export default function TaskList() {
   const { selectedGroup, tasks, addTask, toggleTask, deleteTask } = useTodo();
   const [taskTitle, setTaskTitle] = useState("");
+
+  useEffect(() => {
+
+  }, [selectedGroup])
+
 
   if (!selectedGroup) {
     return (
@@ -28,7 +33,9 @@ export default function TaskList() {
       <header className="mb-8 mt-4 text-center">
   <h2 className="inline-block relative text-white text-4xl font-thin tracking-wide">
     <span className="relative z-10">{selectedGroup.name.toUpperCase()} TASKS</span>
-    <span className="absolute left-[-5%] bottom-[4px] w-[110%] h-[8px] bg-[#6FB269]  z-0"></span>
+    <span className="absolute left-[-5%] bottom-[4px] w-[110%] h-[8px] bg z-0"
+      style={{ backgroundColor: selectedGroup.color }}
+    ></span>
   </h2>
 </header>
 
@@ -49,6 +56,7 @@ export default function TaskList() {
             value={taskTitle}
             onChange={(e) => setTaskTitle(e.target.value)}
             placeholder="Add Your Task"
+
             className="bg-transparent text-gray-300 placeholder-[gray-700] outline-none pl-3 rounded-full flex-1 min-w-0 text-l"
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
@@ -59,6 +67,7 @@ export default function TaskList() {
 
           <button
             onClick={handleAddTask}
+            style={{ backgroundColor: selectedGroup.color }}
             className="bg-[#6FB269]  hover:bg-[#88b384] text-white font-semibold px-[1.4rem] py-2 rounded-full transition-colors duration-200 text-sm flex-shrink-0 ml-2"
           >
             ADD
