@@ -7,6 +7,7 @@ import GroupsSidebar from "./GroupsSidebar";
 import TaskList from "./TaskList";
 import { FaBars } from 'react-icons/fa';
 import { useTodo } from '../context/TodoContext';
+import { FiLogOut } from "react-icons/fi"; // exit icon
 
 function Dashboard() {
   const {session, signOut} = UserAuth();
@@ -62,9 +63,26 @@ function Dashboard() {
       {/* Main content */}
       <main className="flex-1 flex flex-col md:ml-0 ml-0">
         <div className="flex justify-end p-4">
-          <button onClick={handleSignOut}
-          style={{ backgroundColor: selectedGroup?.color || '#6FB269' }}
-          className="bg-green-500 hover:bg-green-400 cursor-pointer hover:brightness-110 text-white text-shadow-lg font-semibold px-4 py-2 rounded-lg transition">Sign Out</button>
+          <button
+        onClick={handleSignOut}
+        style={{ backgroundColor: selectedGroup?.color || "#6FB269" }}
+        className="group cursor-pointer flex items-center overflow-hidden text-white font-semibold rounded-lg transition-all duration-300 ease-in-out"
+      >
+        {/* Icon */}
+        <span className="p-2 flex items-center text-shadow-xs justify-center">
+          <FiLogOut className="" size={25}
+          style={{ filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.3))' }}/>
+        </span>
+
+        {/* Sliding text */}
+        <span
+
+          className="max-w-0 whitespace-pre opacity-0 group-hover:max-w-[100px] group-hover:opacity-100
+          transition-all duration-500 ease-out whitespace-nowrap overflow-hidden"
+          style={{ filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.3))' }}
+        >
+          Sign Out  </span>
+      </button>
         </div>
         <TaskList />
       </main>

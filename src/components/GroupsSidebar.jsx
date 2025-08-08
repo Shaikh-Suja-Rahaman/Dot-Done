@@ -116,11 +116,11 @@ export default function GroupsSidebar() {
               onClick={() => setSelectedGroup(group)}
             >
               <div className="flex items-stretch"> {/* Fixed height container */}
-                <div className="rounded-l-xl bg-[#4E4E4E] flex items-center px-2 py-2">
+                <div className="rounded-l-xl bg-[#4E4E4E] flex items-center px-1 py-2">
                   <FaGripVertical className="text-[#303030] text-[1.2rem]" />
                 </div>
                 <div
-                  className="w-3 bg-[#6FB269] cursor-pointer hover:brightness-110 transition-all color-band"
+                  className="w-[1rem] bg-[#6FB269] cursor-pointer hover:brightness-110 transition-all color-band"
                   style={{ backgroundColor: group.color || '#6FB269' }}
                   onClick={(e) => handleColorBandClick(e, group)}
                 />
