@@ -4,14 +4,15 @@ import React from "react";
 const ColorPicker = ({onColorSelect, onClose, position}) => {
 
   const colors = [
-    '#6FB269', // Default green
-    '#FF6B6B', // Red
-    '#4ECDC4', // Turquoise
-    '#45B7D1', // Blue
-    '#9B59B6', // Purple
-    '#F1C40F', // Yellow
-    '#E67E22', // Orange
-  ]
+  '#6FB269', // Pastel Green (original)
+  '#F28B82', // Soft Red
+  '#9FD9D3', // Pastel Turquoise
+  '#8CC9DE', // Pastel Blue
+  '#BBA5D6', // Pastel Purple
+  '#F6E58D', // Soft Yellow
+  '#F3B781', // Pastel Orange
+];
+
 
   return (
     <div

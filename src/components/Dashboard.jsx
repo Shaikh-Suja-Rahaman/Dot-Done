@@ -64,7 +64,7 @@ function Dashboard() {
         <div className="flex justify-end p-4">
           <button onClick={handleSignOut}
           style={{ backgroundColor: selectedGroup?.color || '#6FB269' }}
-          className="bg-green-500 hover:bg-green-400 text-white font-semibold px-4 py-2 rounded-lg transition">Sign Out</button>
+          className="bg-green-500 hover:bg-green-400 cursor-pointer hover:brightness-110 text-white text-shadow-lg font-semibold px-4 py-2 rounded-lg transition">Sign Out</button>
         </div>
         <TaskList />
       </main>

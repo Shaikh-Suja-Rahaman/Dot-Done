@@ -33,7 +33,7 @@ export default function TaskList() {
       <header className="mb-8 mt-4 text-center">
   <h2 className="inline-block relative text-white text-4xl font-thin tracking-wide">
     <span className="relative z-10">{selectedGroup.name.toUpperCase()} TASKS</span>
-    <span className="absolute left-[-5%] bottom-[4px] w-[110%] h-[8px] bg z-0"
+    <span className="absolute left-[-5%] bottom-[4px] opacity-80 w-[110%] h-[8px] bg z-0"
       style={{ backgroundColor: selectedGroup.color }}
     ></span>
   </h2>
@@ -68,7 +68,7 @@ export default function TaskList() {
           <button
             onClick={handleAddTask}
             style={{ backgroundColor: selectedGroup.color }}
-            className="bg-[#6FB269]  hover:bg-[#88b384] text-white font-semibold px-[1.4rem] py-2 rounded-full transition-colors duration-200 text-sm flex-shrink-0 ml-2"
+            className="hover:brightness-110 text-shadow-lg cursor-pointer text-white font-semibold px-[1.4rem] py-2 rounded-full transition-colors duration-200 text-sm flex-shrink-0 ml-2"
           >
             ADD
           </button>
@@ -112,7 +112,7 @@ export default function TaskList() {
             ></button>
             <button
               onClick={() => deleteTask(task.id)}
-              className="ml-1 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-200 bg-[#dd7878] hover:bg-red-300 transition"
+              className="ml-1 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-200 bg-[#dd7878] hover:bg-red-300 cursor-pointer transition"
               aria-label="Delete task"
             >
               {/* <FaTrash className="text-white text-xl cursor-pointer" /> */}

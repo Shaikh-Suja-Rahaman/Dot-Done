@@ -78,7 +78,7 @@ export default function GroupsSidebar() {
 
   return (
     <>
-      <aside className="w-72 bg-[#212121] text-white p-5 flex flex-col h-screen overflow-y-auto scrollbar-hide ">
+      <aside className="w-80 bg-[#212121] text-white p-5 flex flex-col h-screen overflow-y-auto scrollbar-hide ">
         <div className="flex items-center justify-between mb-10">
           <h2 className="font-serif text-2xl tracking-widest ">GROUPS</h2>
           <FaFolderOpen className="text-xl text-zinc-400" />
@@ -98,7 +98,7 @@ export default function GroupsSidebar() {
           />
           <button
             onClick={handleAddGroup}
-            className="bg-[#6FB269] hover:bg-[#88b384] text-white font-semibold px-4 py-2 rounded-full transition-colors duration-200 text-sm flex-shrink-0 ml-2"
+            className="bg-[#6FB269] text-shadow-lg hover:bg-[#88b384] text-white font-semibold px-4 py-2 rounded-full transition-colors duration-200 text-sm flex-shrink-0 ml-2"
           >
             ADD
           </button>
@@ -110,13 +110,13 @@ export default function GroupsSidebar() {
             <li
               key={group.id}
               ref={idx === groups.length - 1 ? lastGroupRef : null}
-              className={`flex items-center justify-between rounded-xl transition-all duration-200 cursor-pointer ${
+              className={`flex items-stretch justify-between rounded-xl transition-all duration-200 cursor-pointer ${
                 selectedGroup?.id === group.id ? 'bg-[#4E4E4E]' : 'bg-[#303030] hover:bg-[#4E4E4E]'
               }`}
               onClick={() => setSelectedGroup(group)}
             >
-              <div className="flex items-stretch h-12"> {/* Fixed height container */}
-                <div className="rounded-l-xl bg-[#4E4E4E] flex items-center px-2">
+              <div className="flex items-stretch"> {/* Fixed height container */}
+                <div className="rounded-l-xl bg-[#4E4E4E] flex items-center px-2 py-2">
                   <FaGripVertical className="text-[#303030] text-[1.2rem]" />
                 </div>
                 <div
@@ -125,9 +125,10 @@ export default function GroupsSidebar() {
                   onClick={(e) => handleColorBandClick(e, group)}
                 />
               </div>
-              <div className="text-wrap flex-1 pl-2 font-mono tracking-wide text-l">
-                {group.name}
-              </div>
+              <div className="flex px-3 py-2 items-center flex-1 pl-2 font-mono tracking-wide text-l">
+  {group.name}
+</div>
+
               <button
                 onClick={(e) => handleDeleteClick(e, group)}
                 className="text-zinc-400 cursor-pointer hover:text-red-300 transition mr-2"

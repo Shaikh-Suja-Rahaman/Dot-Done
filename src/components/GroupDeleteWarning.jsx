@@ -6,7 +6,7 @@ const GroupDeleteWarning = ({handleCancelDelete, groupToDelete, handleConfirmDel
       <div className="bg-zinc-800/90 backdrop-blur-md p-8 rounded-xl shadow-lg max-w-sm w-full text-center border border-zinc-700/50">
         <h3 className="text-xl font-bold mb-4 text-red-400">Delete Group</h3>
         <p className="mb-6 text-zinc-200">
-          Are you sure you want to delete <span className="font-semibold text-green-400">{groupToDelete?.name}</span>?
+          Are you sure you want to delete <span className="font-semibold text-green-400  " style={{ color : groupToDelete.color}}>{groupToDelete?.name}</span>?
         </p>
         <div className="flex justify-center gap-4">
           <button
