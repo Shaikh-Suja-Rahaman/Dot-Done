@@ -2,7 +2,7 @@ import {createBrowserRouter, Navigate} from 'react-router-dom';
 import App from './App';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
-import Dashboard from './components/Dashboard';
+import {Dashboard} from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import Landing from './components/Landing';
 

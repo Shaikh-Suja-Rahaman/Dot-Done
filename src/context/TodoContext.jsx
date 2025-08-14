@@ -51,7 +51,16 @@ export function TodoProvider({ children }) {
       .insert([{ name, user_id: user.id }])
       .select();
     if (!error && data) setGroups((prev) => [...prev, ...data]);
+
+    console.log("This is the add groups data ");
+    console.log(data);
+
+    console.log("This is the how the groups state looks like ");
+    console.log(groups);
+    
   };
+
+
 
   // Add task
   const addTask = async (title) => {

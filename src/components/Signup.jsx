@@ -49,13 +49,7 @@ const Signup = () => {
     }
   };
 
-  async function createProfile(userId, fullName) {
-    const { data, error } = await supabase
-      .from('profiles')
-      .insert([{id: userId, name: fullName }]);
-    if (error) throw error;
-    return data;
-  }
+
 
   return (
     <div className="min-h-screen flex">
@@ -83,7 +77,7 @@ const Signup = () => {
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-zinc-200 mb-1">Email</label>
-              <input 
+              <input
                 onChange={(e) => setEmail(e.target.value)}
                 id="email" type="email"
                 className="w-full px-3 py-2 border border-zinc-700 rounded-lg bg-zinc-900 text-zinc-100 focus:outline-none focus:border-green-400 transition"

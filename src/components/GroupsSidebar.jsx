@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useTodo } from "../context/TodoContext";
-import { FaTrash, FaFolderOpen, FaGripVertical } from 'react-icons/fa';
-import { FaRegTrashAlt } from "react-icons/fa";
-import GroupDeleteWarning from "./GroupDeleteWarning";
 import ColorPicker from './ColorPicker';
+import { FaRegTrashAlt } from "react-icons/fa";
+import { useTodo } from "../context/TodoContext";
+import GroupDeleteWarning from "./GroupDeleteWarning";
+import React, { useState, useRef, useEffect } from "react";
+import { FaTrash, FaFolderOpen, FaGripVertical } from 'react-icons/fa';
 
 // If using GSAP via CDN, access it as window.gsap
 

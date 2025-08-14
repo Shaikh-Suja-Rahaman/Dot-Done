@@ -9,7 +9,7 @@ import { FaBars } from 'react-icons/fa';
 import { useTodo } from '../context/TodoContext';
 import { FiLogOut } from "react-icons/fi"; // exit icon
 
-function Dashboard() {
+export function Dashboard() {
   const {session, signOut} = UserAuth();
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
@@ -78,7 +78,7 @@ function Dashboard() {
         <span
 
           className="max-w-0 whitespace-pre opacity-0 group-hover:max-w-[100px] group-hover:opacity-100
-          transition-all duration-500 ease-out whitespace-nowrap overflow-hidden"
+          transition-all duration-500 ease-out overflow-hidden"
           style={{ filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.3))' }}
         >
           Sign Out  </span>
@@ -90,4 +90,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard
+export default Dashboard;

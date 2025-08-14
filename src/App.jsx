@@ -11,7 +11,7 @@ function App() {
       <h1>Welcome to the App</h1>
       <p>This is not the home page</p>
     </div>
-  )
+  ) 
 }
 
 export default App

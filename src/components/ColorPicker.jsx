@@ -11,6 +11,7 @@ const ColorPicker = ({onColorSelect, onClose, position}) => {
   '#BBA5D6', // Pastel Purple
   '#F6E58D', // Soft Yellow
   '#F3B781', // Pastel Orange
+  '#FFC5D3', // Light Pink
 ];
 
 

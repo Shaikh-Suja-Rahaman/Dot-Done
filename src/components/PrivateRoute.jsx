@@ -8,7 +8,6 @@ function PrivateRoute({children}) {
     if(session === undefined){
         return<p>Loading . . </p>
     }
-    
 
   return (
     <>
