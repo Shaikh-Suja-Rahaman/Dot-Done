@@ -36,6 +36,8 @@ const Signup = () => {
         navigate('/dashboard');
       }
     } catch (err) {
+      //yes that is what i had thought as well
+      // laksdlklaksldklkalsdklkaskdlaksldkl
       if (
         err.message?.toLowerCase().includes('user already registered') ||
         err.message?.toLowerCase().includes('already exists')

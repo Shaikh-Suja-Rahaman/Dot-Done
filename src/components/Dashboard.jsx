@@ -8,6 +8,8 @@ import TaskList from "./TaskList";
 import { FaBars } from 'react-icons/fa';
 import { useTodo } from '../context/TodoContext';
 import { FiLogOut } from "react-icons/fi"; // exit icon
+import { Folder } from 'lucide-react';
+import CollapsedSidebar from './CollapsedSidebar';
 
 export function Dashboard() {
   const {session, signOut} = UserAuth();
@@ -26,6 +28,11 @@ export function Dashboard() {
       console.error(err);
     }
   }
+
+  useEffect(() => {
+  console.log("Sidebar state:", sidebarOpen);
+}, [sidebarOpen]);
+
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -49,16 +56,15 @@ export function Dashboard() {
   return (
     <div className="flex h-screen bg-[#303030] text-zinc-100">
       {/* Sidebar toggle button */}
-      <button
-        className="absolute top-4 left-4 z-20 p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white md:hidden"
-        onClick={() => setSidebarOpen((open) => !open)}
-        aria-label="Toggle sidebar"
-      >
-        <FaBars className="text-2xl" />
-      </button>
+
       {/* Sidebar */}
       {/* <div className={`fixed md:static z-10 transition-all duration-300 ${sidebarOpen ? 'left-0' : '-left-80'} md:left-0`}>  */}
-        <GroupsSidebar />
+      {
+        sidebarOpen ? ( <GroupsSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>)
+        : (<CollapsedSidebar  sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>)
+      }
+
+
       {/* </div> */}
       {/* Main content */}
       <main className="flex-1 flex flex-col md:ml-0 ml-0">

@@ -4,10 +4,11 @@ import { useTodo } from "../context/TodoContext";
 import GroupDeleteWarning from "./GroupDeleteWarning";
 import React, { useState, useRef, useEffect } from "react";
 import { FaTrash, FaFolderOpen, FaGripVertical } from 'react-icons/fa';
-
+import { Folder } from 'lucide-react';
 // If using GSAP via CDN, access it as window.gsap
+import { motion } from 'framer-motion';
 
-export default function GroupsSidebar() {
+export default function GroupsSidebar({sidebarOpen, setSidebarOpen}) {
   const { groups, addGroup, selectedGroup, setSelectedGroup, deleteGroup, updateGroupColor } = useTodo();
   const [groupName, setGroupName] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -78,10 +79,11 @@ export default function GroupsSidebar() {
 
   return (
     <>
+      
       <aside className="w-80 bg-[#212121] text-white p-5 flex flex-col h-screen overflow-y-auto scrollbar-hide ">
         <div className="flex items-center justify-between mb-10">
           <h2 className="font-serif text-2xl tracking-widest ">GROUPS</h2>
-          <FaFolderOpen className="text-xl text-zinc-400" />
+          <Folder onClick={()=> setSidebarOpen(false)}/>
         </div>
 
         <div className="flex items-center bg-[#4F4F4F] border-2 border-none rounded-full p-1.5 w-full mx-auto shadow-lg mb-12">
