@@ -2,21 +2,32 @@ import React, { useState, useEffect } from "react";
 import { useTodo } from "../context/TodoContext";
 import { FaGripVertical, FaCheck, FaTrash } from 'react-icons/fa';
 import './TaskList.css'; // Assuming you have a CSS file for styles
+import { motion } from "framer-motion";
 
 export default function TaskList() {
   const { selectedGroup, tasks, addTask, toggleTask, deleteTask } = useTodo();
   const [taskTitle, setTaskTitle] = useState("");
 
   useEffect(() => {
-  
+
   }, [selectedGroup])
 
 
   if (!selectedGroup) {
     return (
-      <div className="bg-zinc-900 text-zinc-100 rounded-xl p-8 text-center shadow-lg mt-8 max-w-md mx-auto">
-        Select a group to see tasks.
-      </div>
+
+      <motion.div
+      initial={{opacity : 0, y:100}}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+                 y: { duration: 0.4, ease: 'easeOut' },
+                 opacity: { duration: 0.4 , ease: 'easeIn'},
+                }}
+
+      className="bg-[#1f1f1f] border border-zinc-800 text-zinc-100 p-12 text-center shadow-2xl mt-60 max-w-md mx-auto">
+        <h3 className="font-heading text-xl font-semibold tracking-wide mb-2 text-zinc-400">NO GROUP SELECTED</h3>
+        <p className="font-body text-sm text-zinc-500">Select a group from the sidebar to view and manage tasks</p>
+      </motion.div>
     );
   }
 
@@ -29,98 +40,95 @@ export default function TaskList() {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen overflow-scroll w-full">
-      <header className="mb-8 mt-4 text-center">
-  <h2 className="inline-block relative text-white text-4xl font-thin tracking-wide">
-    <span className="relative z-10">{selectedGroup.name.toUpperCase()} TASKS</span>
-    <span className="absolute left-[-5%] bottom-[4px] opacity-80 w-[110%] h-[8px] bg z-0"
-      style={{ backgroundColor: selectedGroup.color }}
-    ></span>
-  </h2>
-</header>
 
+     <motion.div
+      key={selectedGroup.id} // This is CRITICAL - forces re-mount when group changes
+      initial={{opacity : 0, y:100}}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+                 y: { duration: 0.4, ease: 'easeOut' },
+                 opacity: { duration: 0.4 , ease: 'easeIn'},
+                }}
 
+    className="flex flex-col items-center w-full px-6 py-8">
+      <header className="mb-10 text-center">
+        <h2 className="relative inline-block font-display text-5xl font-bold tracking-tight text-white">
+          <span className="relative z-10">{selectedGroup.name.toUpperCase()}</span>
+          <span
+            className="absolute left-0 bottom-0 w-full h-2 z-0 opacity-60"
+            style={{ backgroundColor: selectedGroup.color }}
+          ></span>
+        </h2>
+        <p className="font-body text-zinc-500 text-sm tracking-wider mt-3 uppercase">Task Management</p>
+      </header>
 
-      {/* <form onSubmit={handleAddTask} className="flex w-full max-w-2xl mb-8 gap-4">
+      {/* Add Task Input - Matching GroupsSidebar style */}
+      <div className="flex items-stretch bg-[#262626] border border-zinc-800 shadow-lg mb-8 overflow-hidden max-w-3xl w-full mx-auto">
         <input
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
-          placeholder="ADD YOUR TASK"
-          className="flex-1 px-6 py-3 rounded-full bg-zinc-700 text-zinc-200 border-none focus:outline-none focus:ring-2 focus:ring-green-400 text-lg tracking-wide shadow"
+          placeholder="What needs to be done?"
+          className="bg-transparent text-gray-200 placeholder-zinc-600 outline-none px-4 py-3 flex-1 min-w-0 font-body text-sm tracking-wide"
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              handleAddTask(e);
+            }
+          }}
         />
-        <button className="px-8 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded-full shadow transition text-lg">ADD</button>
-      </form> */}
+        <button
+          onClick={handleAddTask}
+          style={{ backgroundColor: selectedGroup.color }}
+          className="hover:brightness-110 cursor-pointer text-white font-heading font-semibold px-6 py-3 transition-all duration-200 text-sm tracking-wider uppercase shadow-md"
+        >
+          ADD TASK
+        </button>
+      </div>
 
-       <div className="flex items-center mb-8 bg-[#4F4F4F] border-2 max-w-2xl border-none rounded-full p-1.5 w-full mx-auto shadow-lg">
-          <input
-            value={taskTitle}
-            onChange={(e) => setTaskTitle(e.target.value)}
-            placeholder="Add Your Task"
-
-            className="bg-transparent text-gray-300 placeholder-[gray-700] outline-none pl-3 rounded-full flex-1 min-w-0 text-l"
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
-                handleAddTask(e);
-              }
-            }}
-          />
-
-          <button
-            onClick={handleAddTask}
-            style={{ backgroundColor: selectedGroup.color }}
-            className="hover:brightness-110 text-shadow-lg cursor-pointer text-white font-semibold px-[1.4rem] py-2 rounded-full transition-colors duration-200 text-sm flex-shrink-0 ml-2"
-          >
-            ADD
-          </button>
-        </div>
-
-      <ul className="w-full max-w-2xl  flex flex-col">
-        {/* {tasks.map((task) => (
-          <li
-            key={task.id}
-            className={`flex items-center rounded-full px-6 py-4 shadow-md transition bg-zinc-700 ${task.completed ? 'opacity-60' : ''}`}
-          >
-            <FaGripVertical className="mr-4 text-zinc-400" />
-            <span className={`flex-1 text-lg font-mono tracking-wide ${task.completed ? 'line-through text-zinc-400' : 'text-white'}`}>{task.title}</span>
-            <button
-              onClick={() => toggleTask(task.id, !task.completed)}
-              className={`ml-4 w-9 h-9 flex items-center justify-center rounded-full ${task.completed ? 'bg-green-500' : 'bg-zinc-800 border border-zinc-600'} hover:bg-green-400 transition`}
-              aria-label="Complete task"
-            >
-              <FaCheck className={`text-xl ${task.completed ? 'text-white' : 'text-green-400'}`} />
-            </button>
-            <button
-              onClick={() => deleteTask(task.id)}
-              className="ml-3 w-9 h-9 flex items-center justify-center rounded-full bg-red-500 hover:bg-red-600 transition"
-              aria-label="Delete task"
-            >
-              <FaTrash className="text-white text-xl cursor-pointer" />
-            </button>
-          </li>
-        )).reverse()} */}
+      {/* Task List - Matching GroupsSidebar item style */}
+      <ul className="w-full max-w-3xl flex flex-col space-y-2">
         {tasks.map((task) => (
           <li
             key={task.id}
-            className={`flex items-center mb-5  bg-[#4F4F4F] border-2 max-w-2xl border-none transition-all duration-200 rounded-full p-1.5 w-full mx-auto shadow-lg `}
-            >
-              <FaGripVertical className="text-[#303030]  text-[1.2rem] mr-2" />
-              <span className={`flex-1 text-l font-mono tracking-wide ${task.completed ? 'line-through text-zinc-400' : 'text-white'}`}>{task.title}</span>
-              <button
+            className={`flex items-stretch justify-between transition-all duration-200 shadow-md hover:shadow-lg border border-zinc-800 overflow-hidden ${
+              task.completed ? 'bg-[#1f1f1f] opacity-70' : 'bg-[#1f1f1f] hover:bg-[#262626]'
+            }`}
+          >
+            <div className="flex items-stretch">
+              <div className="bg-[#1a1a1a] flex items-center px-2 border-r border-zinc-800">
+                <FaGripVertical className="text-zinc-700 text-[1rem]" />
+              </div>
+              <div
+                className="w-1"
+                style={{ backgroundColor: selectedGroup.color }}
+              />
+            </div>
+            <div className="flex px-4 py-3 items-center flex-1 font-body text-sm tracking-wide">
+              <span className={task.completed ? 'line-through text-zinc-500' : 'text-zinc-200'}>
+                {task.title}
+              </span>
+            </div>
+
+            <button
               onClick={() => toggleTask(task.id, !task.completed)}
-              className={`w-9 h-9 flex items-center cursor-pointer justify-center transition-all duration-200 rounded-full ${task.completed ? 'bg-[#6FB269]' : 'bg-zinc-800 border border-zinc-600'} hover:bg-[#8ec38a] `}
+              className={`w-10 h-100% flex items-center cursor-pointer justify-center transition-all duration-200 border-l border-zinc-800 hover:bg-zinc-900 ${
+                task.completed ? '' : ''
+              }`}
+              style={{ backgroundColor: task.completed ? selectedGroup.color : 'transparent' }}
               aria-label="Complete task"
-            ></button>
+            >
+              {task.completed && <FaCheck className="text-white text-sm" />}
+            </button>
+
             <button
               onClick={() => deleteTask(task.id)}
-              className="ml-1 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-200 bg-[#dd7878] hover:bg-red-300 cursor-pointer transition"
+              className="text-zinc-600 cursor-pointer hover:text-red-400 hover:bg-zinc-900 transition-all px-3 border-l border-zinc-800"
               aria-label="Delete task"
             >
-              {/* <FaTrash className="text-white text-xl cursor-pointer" /> */}
+              <FaTrash size={16} />
             </button>
           </li>
-        ))}
-
+        )).reverse()}
       </ul>
-    </div>
+    </motion.div>
   );
 }

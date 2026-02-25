@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+/* Import beautiful fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@700;800;900&display=swap');
+
+/* Apply fonts globally */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar styling */
+/* ::-webkit-scrollbar {
+  width: 8px;
+} */
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #505050;
+}
+
+/* Typography utilities */
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+}

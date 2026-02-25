@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 const Task = () => {
   const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
-  
+
   const handleAddTask = () => {
     if(newTask.trim() === ""){
         return;
@@ -12,7 +12,7 @@ const Task = () => {
         setNewTask('');
       }
     }
-  
+
     const handleToggleComplete = (index) => {
       const updatedTasks = tasks.map((task, i) => {
         if (i === index) {
@@ -22,12 +22,12 @@ const Task = () => {
       });
     setTasks(updatedTasks);
     };
-  
+
     const handleDeleteTask = (index) => {
       const updatedTasks = tasks.filter((_, i) => i !== index);
       setTasks(updatedTasks);
     }
-  
+
     return (
     <div className="bg-zinc-900 text-zinc-100 rounded-xl shadow-lg p-8 max-w-lg mx-auto mt-8 flex flex-col min-h-[400px]">
       <h1 className="text-2xl font-bold text-green-400 mb-6 text-center">To-Do List</h1>
@@ -64,7 +64,7 @@ const Task = () => {
               ×
             </button>
                 </li>
-              )).reverse()}
+              ))}
             </ul>
           </div>
     )

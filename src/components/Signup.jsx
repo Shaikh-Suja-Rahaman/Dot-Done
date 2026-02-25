@@ -56,7 +56,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left side: slightly lighter dark */}
-      <div className="hidden md:flex flex-col justify-center items-center w-1/2 text-white bg-zinc-800">
+      <div className="hidden md:flex flex-col justify-center items-center w-1/2 text-white bg-[#1a1a1a] border-r border-zinc-800">
         <TrueFocus
           sentence="DOT DONE"
           manualMode={false}
@@ -64,39 +64,39 @@ const Signup = () => {
           borderColor="#22c55e"
           animationDuration={2}
           pauseBetweenAnimations={1}
-          className="text-8xl font-extrabold tracking-tight mb-8"
+          className="text-8xl font-display font-black tracking-tighter mb-8"
         />
-        <p className="text-zinc-400 text-lg mt-5">Create your account and get productive!</p>
+        <p className="text-zinc-500 text-base mt-8 font-body tracking-wide">CREATE YOUR ACCOUNT AND GET PRODUCTIVE</p>
       </div>
       {/* Right side: form, darker */}
-      <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-zinc-900 min-h-screen">
-        <form onSubmit={handleSignUp} className="bg-zinc-800 p-8 rounded-2xl shadow-lg w-full max-w-md border border-zinc-700">
-          <h2 className="text-2xl font-bold text-green-400 mb-6 text-center">Signup today!</h2>
-          <p className="mb-6 text-center text-zinc-400">
+      <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-[#151515] min-h-screen px-8">
+        <form onSubmit={handleSignUp} className="bg-[#1a1a1a] p-10 shadow-2xl w-full max-w-md border border-zinc-800">
+          <h2 className="text-3xl font-display font-bold text-green-400 mb-8 text-center tracking-tight">SIGN UP</h2>
+          <p className="mb-8 text-center text-zinc-400 font-body text-sm tracking-wide">
             Already have an account?{' '}
-            <Link to="/" className="text-green-400 hover:underline font-semibold">Sign in!</Link>
+            <Link to="/" className="text-green-400 hover:text-green-300 font-heading font-semibold transition-colors tracking-wide">SIGN IN</Link>
           </p>
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-zinc-200 mb-1">Email</label>
+              <label htmlFor="email" className="block text-xs font-heading font-semibold text-zinc-400 mb-2 tracking-widest uppercase">Email Address</label>
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 id="email" type="email"
-                className="w-full px-3 py-2 border border-zinc-700 rounded-lg bg-zinc-900 text-zinc-100 focus:outline-none focus:border-green-400 transition"
+                className="w-full px-4 py-3 border border-zinc-800 bg-[#151515] text-zinc-100 focus:outline-none focus:border-green-400 transition-colors font-body"
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-zinc-200 mb-1">Password</label>
+              <label htmlFor="password" className="block text-xs font-heading font-semibold text-zinc-400 mb-2 tracking-widest uppercase">Password</label>
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 id="password" type="password"
-                className="w-full px-3 py-2 border border-zinc-700 rounded-lg bg-zinc-900 text-zinc-100 focus:outline-none focus:border-green-400 transition"
+                className="w-full px-4 py-3 border border-zinc-800 bg-[#151515] text-zinc-100 focus:outline-none focus:border-green-400 transition-colors font-body"
               />
             </div>
-            <button type="submit" className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-400 transition-colors font-semibold">
-              {loading ? 'Signing up...' : 'Sign up'}
+            <button type="submit" className="w-full bg-green-500 text-white py-3 hover:bg-green-400 transition-colors font-heading font-semibold tracking-widest uppercase text-sm shadow-lg mt-6">
+              {loading ? 'SIGNING UP...' : 'SIGN UP'}
             </button>
-            {error && <p className='text-red-400 text-center pt-4'>{error}</p>}
+            {error && <p className='text-red-400 text-center pt-4 font-body text-sm'>{error}</p>}
           </div>
         </form>
       </div>

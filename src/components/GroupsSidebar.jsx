@@ -79,19 +79,24 @@ export default function GroupsSidebar({sidebarOpen, setSidebarOpen}) {
 
   return (
     <>
-      
-      <aside className="w-80 bg-[#212121] text-white p-5 flex flex-col h-screen overflow-y-auto scrollbar-hide ">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="font-serif text-2xl tracking-widest ">GROUPS</h2>
-          <Folder onClick={()=> setSidebarOpen(false)}/>
+
+      <aside className="w-80 bg-[#1a1a1a] text-white p-6 flex flex-col h-screen overflow-y-auto scrollbar-hide border-r border-zinc-800">
+        <div className="flex items-center justify-between mb-8 pb-4 border-b-2 border-zinc-800">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-white">GROUPS</h2>
+          <button
+            onClick={()=> setSidebarOpen(false)}
+            className="p-2 hover:bg-zinc-800 transition-colors duration-200"
+          >
+            <Folder size={24} className="text-zinc-400 hover:text-white transition-colors"/>
+          </button>
         </div>
 
-        <div className="flex items-center bg-[#4F4F4F] border-2 border-none rounded-full p-1.5 w-full mx-auto shadow-lg mb-12">
+        <div className="flex items-stretch bg-[#262626] border border-zinc-800 shadow-lg mb-8 ">
           <input
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
-            placeholder="Add Group"
-            className="bg-transparent text-gray-300 placeholder-[gray-700] outline-none pl-3 rounded-full flex-1 min-w-0 text-l"
+            placeholder="Create new group..."
+            className="bg-transparent text-gray-200 placeholder-zinc-600 outline-none px-4 py-3 flex-1 min-w-0 font-body text-sm tracking-wide"
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 handleAddGroup(e);
@@ -100,42 +105,42 @@ export default function GroupsSidebar({sidebarOpen, setSidebarOpen}) {
           />
           <button
             onClick={handleAddGroup}
-            className="bg-[#6FB269] text-shadow-lg hover:bg-[#88b384] text-white font-semibold px-4 py-2 rounded-full transition-colors duration-200 text-sm flex-shrink-0 ml-2"
+            className="bg-[#6FB269] hover:bg-[#7ec478] text-white font-heading font-semibold px-5 py-3 transition-all duration-200 text-sm tracking-wider uppercase shadow-md"
           >
             ADD
           </button>
         </div>
 
 
-        <ul className="flex-1 space-y-3">
+        <ul className="flex-1 space-y-2">
           {groups.map((group, idx) => (
             <li
               key={group.id}
               ref={idx === groups.length - 1 ? lastGroupRef : null}
-              className={`flex items-stretch justify-between rounded-xl transition-all duration-200 cursor-pointer ${
-                selectedGroup?.id === group.id ? 'bg-[#4E4E4E]' : 'bg-[#303030] hover:bg-[#4E4E4E]'
+              className={`flex items-stretch justify-between transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg border border-zinc-800 overflow-hidden ${
+                selectedGroup?.id === group.id ? 'bg-[#2a2a2a] border-zinc-700' : 'bg-[#1f1f1f] hover:bg-[#262626]'
               }`}
               onClick={() => setSelectedGroup(group)}
             >
-              <div className="flex items-stretch"> {/* Fixed height container */}
-                <div className="rounded-l-xl bg-[#4E4E4E] flex items-center px-1 py-2">
-                  <FaGripVertical className="text-[#303030] text-[1.2rem]" />
+              <div className="flex items-stretch">
+                <div className="bg-[#1a1a1a] flex items-center px-2 border-r border-zinc-800">
+                  <FaGripVertical className="text-zinc-700 text-[1rem]" />
                 </div>
                 <div
-                  className="w-[1rem] bg-[#6FB269] cursor-pointer hover:brightness-110 transition-all color-band"
+                  className="w-1 bg-[#6FB269] cursor-pointer hover:w-2 transition-all duration-200"
                   style={{ backgroundColor: group.color || '#6FB269' }}
                   onClick={(e) => handleColorBandClick(e, group)}
                 />
               </div>
-              <div className="flex px-3 py-2 items-center flex-1 pl-2 font-mono tracking-wide text-l">
-  {group.name}
-</div>
+              <div className="flex px-4 py-3 items-center flex-1 font-heading text-sm tracking-wide font-medium uppercase">
+                {group.name}
+              </div>
 
               <button
                 onClick={(e) => handleDeleteClick(e, group)}
-                className="text-zinc-400 cursor-pointer hover:text-red-300 transition mr-2"
+                className="text-zinc-600 cursor-pointer hover:text-red-400 hover:bg-zinc-900 transition-all px-3 border-l border-zinc-800"
               >
-                <FaRegTrashAlt size={20} />
+                <FaRegTrashAlt size={16} />
               </button>
             </li>
           ))}

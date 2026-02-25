@@ -2,24 +2,28 @@ import React from 'react'
 
 const GroupDeleteWarning = ({handleCancelDelete, groupToDelete, handleConfirmDelete}) => {
   return (
-    <div className="fixed inset-0 backdrop-blur-sm bg-black/30 flex items-center justify-center z-50">
-      <div className="bg-zinc-800/90 backdrop-blur-md p-8 rounded-xl shadow-lg max-w-sm w-full text-center border border-zinc-700/50">
-        <h3 className="text-xl font-bold mb-4 text-red-400">Delete Group</h3>
-        <p className="mb-6 text-zinc-200">
-          Are you sure you want to delete <span className="font-semibold" style={{ color: groupToDelete.color }}>{groupToDelete?.name}</span>?
+    <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50">
+      <div className="bg-[#1a1a1a] backdrop-blur-md p-10 shadow-2xl max-w-md w-full text-center border-2 border-zinc-800">
+        <h3 className="font-display text-2xl font-bold mb-6 text-red-400 tracking-tight">DELETE GROUP</h3>
+        <p className="mb-8 text-zinc-300 font-body text-base leading-relaxed">
+          Are you sure you want to permanently delete{' '}
+          <span className="font-heading font-semibold tracking-wide" style={{ color: groupToDelete.color }}>
+            {groupToDelete?.name}
+          </span>
+          ?
         </p>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-3">
           <button
             onClick={handleConfirmDelete}
-            className="bg-zinc-600/80 cursor-pointer ring-2 ring-inset ring-transparent hover:ring-red-400 hover:bg-zinc-600 text-red-400 px-6 py-2 rounded-lg font-semibold backdrop-blur-sm transition-all duration-200"
+            className="bg-[#8b3a3a] cursor-pointer hover:bg-[#a04444] text-red-200 px-8 py-3 font-heading font-semibold backdrop-blur-sm transition-all duration-200 border border-zinc-800 hover:border-red-900 tracking-wider uppercase text-sm"
           >
-            Yes, Delete
+            DELETE
           </button>
           <button
             onClick={handleCancelDelete}
-            className="bg-zinc-600/80 hover:bg-zinc-600 cursor-pointer ring-2 ring-inset ring-transparent hover:ring-white/20 text-white px-6 py-2 rounded-lg font-semibold backdrop-blur-sm transition-all duration-200"
+            className="bg-[#262626] hover:bg-[#303030] cursor-pointer text-white px-8 py-3 font-heading font-semibold backdrop-blur-sm transition-all duration-200 border border-zinc-800 hover:border-zinc-700 tracking-wider uppercase text-sm"
           >
-            Cancel
+            CANCEL
           </button>
         </div>
       </div>
